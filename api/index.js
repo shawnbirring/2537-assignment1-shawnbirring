@@ -23,7 +23,7 @@ const {
 } = process.env;
 
 // Database connection
-const client = require("./databaseConnection");
+const client = require("../databaseConnection");
 const userCollection = client.db(MONGODB_DATABASE).collection("assignment1");
 
 // Express app configuration
@@ -179,6 +179,7 @@ app.get("*", (req, res) => {
   res.send(html);
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+// app.listen(port, () => {
+//   console.log(`Server is running on port ${port}`);
+// });
+module.exports = app;
