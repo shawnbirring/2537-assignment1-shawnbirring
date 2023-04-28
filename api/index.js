@@ -29,7 +29,7 @@ const userCollection = client.db(MONGODB_DATABASE).collection("assignment1");
 // Express app configuration
 const app = express();
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/../public"));
 
 // Session store configuration
 const mongoStore = MongoStore.create({
