@@ -11,7 +11,7 @@ dotenv.config();
 
 // Constants
 const saltRounds = 12;
-const port = process.env.PORT || 3000;
+// const port = process.env.PORT || 3000;
 const expireTime = 60 * 60 * 1000;
 const {
   MONGODB_DATABASE,
@@ -82,6 +82,7 @@ app.get("/createUser", (req, res) => {
 });
 
 app.get("/login", (req, res) => {
+  const errorMessage = req.query.error;
   const html = `
     login
     <form action="/submitLogin" method="POST">
@@ -89,7 +90,13 @@ app.get("/login", (req, res) => {
       <input type="password" name="password" placeholder="password">
       <button type="submit">Submit</button>
     </form>
-    <button onclick="location.href='/'">Go Back</button>`;
+    <button onclick="location.href='/'">Go Back</button>
+    ${
+      errorMessage
+        ? `<div style="font-size: 18px; color: red;">${errorMessage}</div>`
+        : ""
+    }`;
+
   res.send(html);
 });
 
@@ -117,12 +124,12 @@ app.post("/submitLogin", async (req, res) => {
       return;
     } else {
       console.log("Wrong Password");
-      res.redirect("/login");
+      res.redirect("/login?error=wrongPassword");
       return;
     }
   } else {
     console.log("User Not Found");
-    res.redirect("/login");
+    res.redirect("/login?error=userNotFound");
     return;
   }
 });
