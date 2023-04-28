@@ -62,13 +62,10 @@ app.use(
   })
 );
 
-app.get(
-  "https://2537-assignment1-shawnbirring-54ktgyron-shawnbirring.vercel.app/",
-  (req, res) => {
-    const html = `Welcome to the homepage! <a href="/login">Login</a> or <a href="/createUser">Sign Up!</a>`;
-    res.send(html);
-  }
-);
+app.get("/", (req, res) => {
+  const html = `Welcome to the homepage! <a href="/login">Login</a> or <a href="/createUser">Sign Up!</a>`;
+  res.send(html);
+});
 
 app.get("/createUser", (req, res) => {
   const html = `
