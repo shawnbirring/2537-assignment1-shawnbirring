@@ -12,7 +12,7 @@ dotenv.config();
 // Constants
 const saltRounds = 12;
 const port = process.env.PORT || 3000;
-const expireTime = 24 * 60 * 60 * 1000;
+const expireTime = 60 * 60 * 1000;
 const {
   MONGODB_DATABASE,
   MONGODB_HOST,
